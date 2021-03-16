@@ -30,8 +30,8 @@ public class ProductService {
         }
      }
 
-    public List<String> findDistinctBrands() {
-        return productRepository.findDistinctBrands();
+    public List<String> findDistinctSign() {
+        return productRepository.findDistinctSign();
     }
 
     public List<String> findDistinctCategories() {
@@ -46,14 +46,14 @@ public class ProductService {
         productRepository.deleteById(id);
     }
 
-    public List<Product> findByBrandAndOrCategory(String brand, String category) {
-        if(category == null && brand == null)
+    public List<Product> findBySignAndOrCategory(String sign, String category) {
+        if(category == null && sign == null)
             return productRepository.findAll();
         else if(category == null)
-            return productRepository.findByBrand(brand);
-        else if(brand == null)
+            return productRepository.findBySign(sign);
+        else if(sign == null)
             return  productRepository.findByCategory(category);
         else
-            return productRepository.findByBrandAndCategory(brand, category);
+            return productRepository.findBySignAndCategory(sign, category);
     }
 }

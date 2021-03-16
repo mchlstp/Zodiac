@@ -27,30 +27,56 @@ public class MainController {
     public void addNew() {
         List<Product> allProducts = productService.findAll();
 
-//        if (allProducts.isEmpty()) {
-//
-//            List<Product> newProducts = new ArrayList<Product>();
-//
-//            newProducts.add(new Product(4, (float) 1500.00, "Apple MacBook Pro", "MacBook Pro", "Apple", "Capricorn",
-//                    "images/apple_mlh32ll_a_15_4_macbook_pro_with_1293726.jpg"));
-//
-//            newProducts.add(new Product(3, (float) 1000.00, "C7 ST Desktop Front Edit", "Desktop", "Dell", "Cancer",
-//                    "images/C7_ST_Desktop_Front.jpg"));
-//
-//            newProducts.add(new Product(12, (float) 800.00, "New iPhone 8, Silver", "IPhone 8", "Apple", "Taurus",
-//                    "images/iphone8-silver-select-2017.jpg"));
-//
-//            newProducts.add(new Product(7, (float) 700.00, "New iPhone", "IPhone", "IPhone", "Aries",
-//                    "images/iphonexfrontback-800x573.jpg"));
-//
-//            for (Product product : newProducts) {
-//                productService.save(product);
-//            }
-//        } else {
-//
-//            System.out.println("You don't need more items!");
-//        }
-    }
+        if (allProducts.isEmpty()) {
+
+            List<Product> newProducts = new ArrayList<Product>();
+
+            newProducts.add(new Product(4, (float) 3.99, "Aries Avatar", "Aries",
+                    "images/Aries.png","Aries"));
+            
+            newProducts.add(new Product(4, (float) 3.99, "Aries Avatar", "Taurus",
+                    "images/Taurus.png","Taurus"));
+            
+            newProducts.add(new Product(4, (float) 3.99, "Aries Avatar", "Gemini",
+                    "images/Gemini.png","Gemini"));
+            
+            newProducts.add(new Product(4, (float) 3.99, "Aries Avatar", "Cancer",
+                    "images/Cancer.png","Cancer"));
+            
+            newProducts.add(new Product(4, (float) 3.99, "Aries Avatar", "Leo",
+                    "images/Leo.png","Leo"));
+            
+            newProducts.add(new Product(4, (float) 3.99, "Aries Avatar", "Virgo",
+                    "images/Virgo.png","Virgo"));
+            
+            newProducts.add(new Product(4, (float) 3.99, "Aries Avatar", "Libra",
+                    "images/Libra.png","Libra"));
+            
+            newProducts.add(new Product(4, (float) 3.99, "Aries Avatar", "Scorpio",
+                    "images/Scorpio.png","Scorpio"));
+            
+            newProducts.add(new Product(4, (float) 3.99, "Aries Avatar", "Sagittarius",
+                    "images/Sagittarius.png","Sagittarius"));
+            
+            newProducts.add(new Product(4, (float) 3.99, "Aries Avatar", "Capricorn",
+                    "images/Capricorn.png","Capricorn"));
+            
+            newProducts.add(new Product(4, (float) 3.99, "Aries Avatar", "Aquarius",
+                    "images/Aquarius.png","Aquarius"));
+            
+            newProducts.add(new Product(4, (float) 3.99, "Aries Avatar", "Pisces",
+                    "images/Pisces.png","Pisces"));
+
+        
+
+            for (Product product : newProducts) {
+                productService.save(product);
+            }
+        } else {
+
+            System.out.println("You don't need more items!");
+        }
+   }
 
     @GetMapping("/")
     public String main() {
@@ -68,15 +94,15 @@ public class MainController {
         return productService.findDistinctCategories();
     }
 
-    @ModelAttribute("brands")
-    public List<String> brands() {
-        return productService.findDistinctBrands();
+    @ModelAttribute("sign")
+    public List<String> sign() {
+        return productService.findDistinctSign();
     }
 
     @GetMapping("/filter")
-    public String filter(@RequestParam(required = false) String category, @RequestParam(required = false) String brand,
+    public String filter(@RequestParam(required = false) String category, @RequestParam(required = false) String sign,
             Model model) {
-        List<Product> filtered = productService.findByBrandAndOrCategory(brand, category);
+        List<Product> filtered = productService.findBySignAndOrCategory(sign, category);
         model.addAttribute("products", filtered); // Overrides the @ModelAttribute above.
         return "main";
     }

@@ -12,12 +12,12 @@ import com.tts.ecom.Models.Product;
 public interface ProductRepository extends CrudRepository<Product, Long> {
     List<Product> findAll();
     Product findById(long id);
-    List<Product> findByBrand(String brand);
+    List<Product> findBySign(String sign);
     List<Product> findByCategory(String category);
-    List<Product> findByBrandAndCategory(String brand, String category);
+    List<Product> findBySignAndCategory(String sign, String category);
 
-    @Query("SELECT DISTINCT p.brand FROM Product p")
-    List<String> findDistinctBrands();
+    @Query("SELECT DISTINCT p.sign FROM Product p")
+    List<String> findDistinctSign();
 
     @Query("SELECT DISTINCT p.category FROM Product p")
     List<String> findDistinctCategories();
